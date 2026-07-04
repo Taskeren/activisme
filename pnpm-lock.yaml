@@ -8,13 +8,25 @@ importers:
 
   .:
     dependencies:
+      '@taskeren/bungie-api-ts':
+        specifier: ^5.10.4
+        version: 5.10.4
       hono:
         specifier: ^4.12.27
         version: 4.12.27
+      lodash:
+        specifier: ^4.18.1
+        version: 4.18.1
     devDependencies:
+      '@types/lodash':
+        specifier: ^4.17.24
+        version: 4.17.24
       '@types/node':
         specifier: ^26.1.0
         version: 26.1.0
+      prettier:
+        specifier: ^3.9.4
+        version: 3.9.4
       wrangler:
         specifier: ^4.107.0
         version: 4.107.0
@@ -390,6 +402,13 @@ packages:
   '@speed-highlight/core@1.2.17':
     resolution: {integrity: sha512-Z92FwKpCtfaW1V0jTU/fh3QzYEZN8wDwrzRIBoADCJfn4mJCNcJN/XegifX7BDrQ8/h9Xh/JnbyMchL0FqXrkg==}
 
+  '@taskeren/bungie-api-ts@5.10.4':
+    resolution: {integrity: sha512-wLA1JKTG2oeVcv4uW2LJABmvNM7sMsyMpf6GgpoMU0J3tNt00bMwzrQEfp9V9zE4/d1Tvj06cMV3yt5f4nH4/A==}
+    engines: {node: '>=13.2.0'}
+
+  '@types/lodash@4.17.24':
+    resolution: {integrity: sha512-gIW7lQLZbue7lRSWEFql49QJJWThrTFFeIMJdp3eH4tKoxm1OvEPg02rm4wCCSHS0cL3/Fizimb35b7k8atwsQ==}
+
   '@types/node@26.1.0':
     resolution: {integrity: sha512-O0A1G3xPGy4w7AgQdAQYUlQ+BKk2Oovw8eRpofyp5KdBZULnbe+WqaOVNrm705SHphCiG4XHsACrSmPu1f+Kgw==}
 
@@ -425,6 +444,9 @@ packages:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
     engines: {node: '>=6'}
 
+  lodash@4.18.1:
+    resolution: {integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==}
+
   miniflare@4.20260701.0:
     resolution: {integrity: sha512-L6eAAi6IKtyb/7J6L+YsH2vb1yBrJWKRXI293JYDiMl70+6nncdAgigex58w6WBd+CwvdMsqOyNyGs95Op5gWQ==}
     engines: {node: '>=22.0.0'}
@@ -435,6 +457,11 @@ packages:
 
   pathe@2.0.3:
     resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
+
+  prettier@3.9.4:
+    resolution: {integrity: sha512-yWG/o/4oJfo036EKAfK6ACAoDOfHeRHx4tuxkfBZiauURiaSmYwlpOr5LQqKtIkRD2z1PLteme2WoxEnj4tHTg==}
+    engines: {node: '>=14'}
+    hasBin: true
 
   semver@7.8.5:
     resolution: {integrity: sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==}
@@ -728,6 +755,10 @@ snapshots:
 
   '@speed-highlight/core@1.2.17': {}
 
+  '@taskeren/bungie-api-ts@5.10.4': {}
+
+  '@types/lodash@4.17.24': {}
+
   '@types/node@26.1.0':
     dependencies:
       undici-types: 8.3.0
@@ -776,6 +807,8 @@ snapshots:
 
   kleur@4.1.5: {}
 
+  lodash@4.18.1: {}
+
   miniflare@4.20260701.0:
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
@@ -791,6 +824,8 @@ snapshots:
   path-to-regexp@6.3.0: {}
 
   pathe@2.0.3: {}
+
+  prettier@3.9.4: {}
 
   semver@7.8.5: {}
 

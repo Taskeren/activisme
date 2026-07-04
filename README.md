@@ -1,21 +1,3 @@
-```txt
-npm install
-npm run dev
-```
+# Activisme
 
-```txt
-npm run deploy
-```
-
-[For generating/synchronizing types based on your Worker configuration run](https://developers.cloudflare.com/workers/wrangler/commands/#types):
-
-```txt
-npm run cf-typegen
-```
-
-Pass the `CloudflareBindings` as generics when instantiating `Hono`:
-
-```ts
-// src/index.ts
-const app = new Hono<{ Bindings: CloudflareBindings }>()
-```
+Activisme (Activism in French) is a CloudFlare worker that runs the backend stuffs for D2 Activism Report.

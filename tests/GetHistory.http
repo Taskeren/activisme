@@ -1,0 +1,5 @@
+### Get History
+GET http://127.0.0.1:8787/api/get-history/3/4611686018513312174
+
+### Get History V2
+GET http://127.0.0.1:8787/api/get-history2/3/4611686018513312174

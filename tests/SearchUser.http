@@ -1,0 +1,18 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=WebStorm
+
+### Get ME!
+POST http://127.0.0.1:8787/api/search-user
+
+"Taskeren-3"
+
+### Get ME! (Main Only)
+POST http://127.0.0.1:8787/api/search-user?main=1
+
+"Taskeren-3"
+
+### Get ME! (NEW)
+POST http://127.0.0.1:8787/api/search-user?main=1
+
+"我#4417"
