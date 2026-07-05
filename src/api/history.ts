@@ -8,16 +8,17 @@ import {
   getProfile,
   PlatformErrorCodes,
 } from "@taskeren/bungie-api-ts/destiny2";
-import { BUNGIE_API } from "./bungie";
+import { BUNGIE_API } from "../bungie";
 import { HTTPException } from "hono/http-exception";
 import _ from "lodash";
+import { HistoriesResponse } from "../types/response";
 
 const MAX_PAGE = 50;
 
 export async function aggregateUserActivity(
   membershipType: BungieMembershipType,
   destinyMembershipId: string,
-) {
+): Promise<HistoriesResponse> {
   const apiCallProfile = await getProfile(BUNGIE_API, {
     membershipType,
     destinyMembershipId,
@@ -30,13 +31,17 @@ export async function aggregateUserActivity(
     throw new HTTPException(500, { message: apiCallProfile.Message });
   }
   const { characters: rCharacters, profile } = apiCallProfile.Response;
+  const userInfo = profile.data?.userInfo;
+  if (userInfo === undefined) {
+    throw new HTTPException(500, { message: "Missing user info" });
+  }
 
   // the last played character
   const characters = rCharacters.data ?? {};
   const lastCharacter = _.head(Object.values(characters));
   const theEmblemHash = lastCharacter?.emblemHash;
 
-  let emblem: DestinyInventoryItemDefinition | undefined;
+  let emblemDefinition: DestinyInventoryItemDefinition | undefined;
   if (theEmblemHash) {
     const apiCallDefinition = await getDestinyEntityDefinition(BUNGIE_API, {
       hashIdentifier: theEmblemHash,
@@ -44,12 +49,12 @@ export async function aggregateUserActivity(
     });
     // assign if success; ignore otherwise.
     if (apiCallDefinition.ErrorCode === PlatformErrorCodes.Success) {
-      emblem =
+      emblemDefinition =
         apiCallDefinition.Response as unknown as DestinyInventoryItemDefinition;
     }
   }
 
-  const activities = await listUserActivityHistory(
+  const histories = await listUserActivityHistory(
     membershipType,
     destinyMembershipId,
     Object.keys(characters),
@@ -57,9 +62,10 @@ export async function aggregateUserActivity(
   );
 
   return {
-    profile,
-    emblem,
-    activities,
+    userInfo,
+    emblemDefinition,
+    characters,
+    histories,
   };
 }
 

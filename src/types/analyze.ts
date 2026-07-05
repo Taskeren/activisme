@@ -19,19 +19,16 @@ export const CompletionReason = {
 export type CompletionReason =
   (typeof CompletionReason)[keyof typeof CompletionReason];
 
-export type CompletionStates = Partial<
-  Record<
-    CompletionType,
-    {
-      count: number;
-      reasons: Partial<Record<CompletionReason, number>>;
-    }
-  >
->;
+export type CompletionData = {
+  count: number;
+  reasons: Partial<Record<CompletionReason, number>>;
+};
+
+export type GroupCompletionInfo = Partial<Record<CompletionType, CompletionData>>;
 
 export type Highlight = string | [string, string];
 
-export interface AnalyzedGroupEntry {
+export interface AnalyzedActivity {
   hash: number;
   highlights: Highlight[];
   completionType: CompletionType;
@@ -41,12 +38,9 @@ export interface AnalyzedGroupEntry {
   rawData?: unknown;
 }
 
-export interface AnalyzedGroupData {
-  info: {
-    // activity hash
-    hash: number;
-    highlights: Highlight[];
-    completionStates: CompletionStates;
-  };
-  entries: AnalyzedGroupEntry[];
+export interface AnalyzedGroup {
+  hash: number;
+  highlights: Highlight[];
+  completion: GroupCompletionInfo;
+  activities: AnalyzedActivity[];
 }

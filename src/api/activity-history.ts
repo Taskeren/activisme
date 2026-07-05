@@ -4,14 +4,26 @@ import {
 } from "@taskeren/bungie-api-ts/destiny2";
 import { HighlightBuilder } from "../helper/hightlight";
 import {
-  CompletionStates,
-  CompletionState,
-  CompletionType,
+  AnalyzedGroup,
+  AnalyzedActivity,
   CompletionReason,
-  AnalyzedGroupData,
-  AnalyzedGroupEntry,
+  CompletionState,
+  GroupCompletionInfo,
+  CompletionType,
   Highlight,
-} from "../activity_types";
+} from "../types/analyze";
+import { HistoriesResponse, HistoriesResponse2 } from "../types/response";
+
+export function updateResponse(
+  response: HistoriesResponse,
+  withRaw: boolean,
+): HistoriesResponse2 {
+  const analyzed = analyzeUserActivityHistories(response.histories, withRaw);
+  return {
+    ...response,
+    histories: analyzed,
+  };
+}
 
 export function analyzeUserActivityHistories(
   histories: DestinyHistoricalStatsPeriodGroup[],
@@ -52,27 +64,25 @@ function ignorable(a: DestinyHistoricalStatsPeriodGroup): boolean {
 function analyze(
   gs: DestinyHistoricalStatsPeriodGroup[],
   withRaw: boolean,
-): AnalyzedGroupData {
+): AnalyzedGroup {
   if (gs.length === 0) throw new Error("Empty groups are not allowed");
 
   const highlights = [] as Highlight[];
-  const completionStates = {} as CompletionStates;
-  const entries = gs.map((g) => analyzeOne(g, completionStates, withRaw));
+  const completion = {} as GroupCompletionInfo;
+  const activities = gs.map((g) => analyzeOne(g, completion, withRaw));
   return {
-    info: {
-      hash: gs[0].activityDetails.directorActivityHash,
-      highlights,
-      completionStates,
-    },
-    entries,
+    hash: gs[0].activityDetails.directorActivityHash,
+    highlights,
+    completion,
+    activities,
   };
 }
 
 function analyzeOne(
   h: DestinyHistoricalStatsPeriodGroup,
-  completionStates: CompletionStates,
+  completionStates: GroupCompletionInfo,
   withRaw: boolean,
-): AnalyzedGroupEntry {
+): AnalyzedActivity {
   const highlights = new HighlightBuilder();
 
   const modes = h.activityDetails.modes;
@@ -208,7 +218,7 @@ function hasAny<T>(src: T[], ...els: T[]): boolean {
 }
 
 function updateCompletionState(
-  c: CompletionStates,
+  c: GroupCompletionInfo,
   completion: CompletionType,
   reason?: CompletionReason,
 ) {

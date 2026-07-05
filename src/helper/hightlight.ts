@@ -1,4 +1,4 @@
-import { Highlight } from "../api/activity-history";
+import { Highlight } from "../types/analyze";
 
 export class HighlightBuilder {
   #data: Map<string, (() => string) | undefined>;

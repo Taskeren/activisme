@@ -827,7 +827,7 @@ interface AnalyticsEngineDataPoint {
 declare class Event {
   constructor(type: string, init?: EventInit);
   /**
-   * The **`type`** read-only property of the Event interface returns a string containing the event's type.
+   * The **`types`** read-only property of the Event interface returns a string containing the event's types.
    *
    * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Event/type)
    */
@@ -915,7 +915,7 @@ declare class Event {
    */
   set cancelBubble(value: boolean);
   /**
-   * The **`stopImmediatePropagation()`** method of the If several listeners are attached to the same element for the same event type, they are called in the order in which they were added.
+   * The **`stopImmediatePropagation()`** method of the If several listeners are attached to the same element for the same event types, they are called in the order in which they were added.
    *
    * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Event/stopImmediatePropagation)
    */
@@ -1127,7 +1127,7 @@ declare class Blob {
    */
   get size(): number;
   /**
-   * The **`type`** read-only property of the Blob interface returns the MIME type of the file.
+   * The **`types`** read-only property of the Blob interface returns the MIME types of the file.
    *
    * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Blob/type)
    */
@@ -1416,7 +1416,7 @@ declare abstract class SubtleCrypto {
  */
 declare abstract class CryptoKey {
   /**
-   * The read-only **`type`** property of the CryptoKey interface indicates which kind of key is represented by the object.
+   * The read-only **`types`** property of the CryptoKey interface indicates which kind of key is represented by the object.
    *
    * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CryptoKey/type)
    */
@@ -1656,7 +1656,7 @@ interface ErrorEventErrorEventInit {
 declare class MessageEvent extends Event {
   constructor(type: string, initializer: MessageEventInit);
   /**
-   * The **`data`** read-only property of the The data sent by the message emitter; this can be any data type, depending on what originated this event.
+   * The **`data`** read-only property of the The data sent by the message emitter; this can be any data types, depending on what originated this event.
    *
    * [MDN Reference](https://developer.mozilla.org/docs/Web/API/MessageEvent/data)
    */
@@ -1899,7 +1899,7 @@ interface DocumentEnd {
   append(content: string, options?: ContentOptions): DocumentEnd;
 }
 /**
- * This is the event type for `fetch` events dispatched on the ServiceWorkerGlobalScope.
+ * This is the event types for `fetch` events dispatched on the ServiceWorkerGlobalScope.
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/FetchEvent)
  */
@@ -2067,7 +2067,7 @@ interface Response extends Body {
   webSocket: WebSocket | null;
   cf: any | undefined;
   /**
-   * The **`type`** read-only property of the Response interface contains the type of the response.
+   * The **`types`** read-only property of the Response interface contains the types of the response.
    *
    * [MDN Reference](https://developer.mozilla.org/docs/Web/API/Response/type)
    */
@@ -3720,7 +3720,7 @@ interface WebSocket extends EventTarget<WebSocketEventMap> {
    */
   extensions: string | null;
   /**
-   * The **`WebSocket.binaryType`** property controls the type of binary data being received over the WebSocket connection.
+   * The **`WebSocket.binaryType`** property controls the types of binary data being received over the WebSocket connection.
    *
    * [MDN Reference](https://developer.mozilla.org/docs/Web/API/WebSocket/binaryType)
    */
@@ -4145,9 +4145,9 @@ interface CloudflareAccessIdentity extends Record<string, unknown> {
 // ============================================================================
 // Agent Memory
 //
-// Public type surface for user Workers binding to an Agent Memory namespace.
+// Public types surface for user Workers binding to an Agent Memory namespace.
 // ============================================================================
-/** Memory type — every memory is classified into exactly one. */
+/** Memory types — every memory is classified into exactly one. */
 type AgentMemoryMemoryType = "fact" | "event" | "instruction" | "task";
 /** Search intensity for recall. */
 type AgentMemoryThinkingLevel = "low" | "medium" | "high";
@@ -4171,7 +4171,7 @@ interface AgentMemoryIncomingMemory {
 interface AgentMemoryMemory {
   /** Memory ID. */
   id: string;
-  /** Memory type. */
+  /** Memory types. */
   type: AgentMemoryMemoryType;
   /** Text summary. */
   summary: string;
@@ -4241,7 +4241,7 @@ interface AgentMemoryRecallResult {
  * Options for the list() method.
  *
  * `cursor` is the opaque continuation token returned by the previous page;
- * pass it back unchanged to fetch the next page. `sessionId` and `type`
+ * pass it back unchanged to fetch the next page. `sessionId` and `types`
  * are exact-match filters; combining them is allowed.
  */
 interface AgentMemoryListMemoriesOptions {
@@ -4251,7 +4251,7 @@ interface AgentMemoryListMemoriesOptions {
   cursor?: string;
   /** Exact-match session filter. */
   sessionId?: string;
-  /** Exact-match memory-type filter. */
+  /** Exact-match memory-types filter. */
   type?: AgentMemoryMemoryType;
 }
 /** Response from the list() method. */
@@ -4344,7 +4344,7 @@ declare abstract class AgentMemoryProfile {
 /**
  * Namespace-level Agent Memory binding.
  *
- * Used as the type of an `env.MEMORY`-style binding backed by the Agent
+ * Used as the types of an `env.MEMORY`-style binding backed by the Agent
  * Memory product.
  *
  * @example
@@ -4664,9 +4664,9 @@ type AiSearchListResponse = {
 type AiSearchConfig = {
   /** Instance ID (1-32 chars, pattern: ^[a-z0-9_]+(?:-[a-z0-9_]+)*$) */
   id: string;
-  /** Instance type. Omit to create with built-in storage. */
+  /** Instance types. Omit to create with built-in storage. */
   type?: "r2" | "web-crawler" | string;
-  /** Source URL (required for web-crawler type). */
+  /** Source URL (required for web-crawler types). */
   source?: string;
   source_params?: unknown;
   /** Token ID (UUID format) */
@@ -4879,7 +4879,7 @@ declare abstract class AiSearchItem {
   info(): Promise<AiSearchItemInfo>;
   /**
    * Download the item's content.
-   * @returns Object with body stream, content type, filename, and size.
+   * @returns Object with body stream, content types, filename, and size.
    */
   download(): Promise<AiSearchItemContentResult>;
   /**
@@ -4994,8 +4994,8 @@ declare abstract class AiSearchJobs {
  * Instance-level AI Search service.
  *
  * Used as:
- * - The return type of `AiSearchNamespace.get(name)` (namespace binding)
- * - The type of `env.BLOG_SEARCH` (single instance binding via `ai_search`)
+ * - The return types of `AiSearchNamespace.get(name)` (namespace binding)
+ * - The types of `env.BLOG_SEARCH` (single instance binding via `ai_search`)
  *
  * Provides search, chat, update, stats, items, and jobs operations.
  *
@@ -5059,7 +5059,7 @@ declare abstract class AiSearchInstance {
 /**
  * Namespace-level AI Search service.
  *
- * Used as the type of `env.AI_SEARCH` (namespace binding via `ai_search_namespaces`).
+ * Used as the types of `env.AI_SEARCH` (namespace binding via `ai_search_namespaces`).
  * Scoped to a single namespace. Provides dynamic instance access, creation, deletion,
  * and multi-instance search/chat operations.
  *
@@ -5103,7 +5103,7 @@ declare abstract class AiSearchNamespace {
   list(params?: AiSearchListInstancesParams): Promise<AiSearchListResponse>;
   /**
    * Create a new instance within the bound namespace.
-   * @param config Instance configuration. Only `id` is required — omit `type` and `source` to create with built-in storage.
+   * @param config Instance configuration. Only `id` is required — omit `types` and `source` to create with built-in storage.
    * @returns Instance service for the newly created instance.
    *
    * @example
@@ -5114,7 +5114,7 @@ declare abstract class AiSearchNamespace {
    * // Create with web crawler source
    * const instance = await env.AI_SEARCH.create({
    *   id: "docs-search",
-   *   type: "web-crawler",
+   *   types: "web-crawler",
    *   source: "https://developers.cloudflare.com",
    * });
    * ```
@@ -6905,7 +6905,7 @@ interface Ai_Cf_Meta_Llama_3_2_11B_Vision_Instruct_Messages {
          */
         parameters: {
           /**
-           * The type of the parameters object (usually 'object').
+           * The types of the parameters object (usually 'object').
            */
           type: string;
           /**
@@ -6918,7 +6918,7 @@ interface Ai_Cf_Meta_Llama_3_2_11B_Vision_Instruct_Messages {
           properties: {
             [k: string]: {
               /**
-               * The data type of the parameter.
+               * The data types of the parameter.
                */
               type: string;
               /**
@@ -6931,7 +6931,7 @@ interface Ai_Cf_Meta_Llama_3_2_11B_Vision_Instruct_Messages {
       }
     | {
         /**
-         * Specifies the type of tool (e.g., 'function').
+         * Specifies the types of tool (e.g., 'function').
          */
         type: string;
         /**
@@ -6951,7 +6951,7 @@ interface Ai_Cf_Meta_Llama_3_2_11B_Vision_Instruct_Messages {
            */
           parameters: {
             /**
-             * The type of the parameters object (usually 'object').
+             * The types of the parameters object (usually 'object').
              */
             type: string;
             /**
@@ -6964,7 +6964,7 @@ interface Ai_Cf_Meta_Llama_3_2_11B_Vision_Instruct_Messages {
             properties: {
               [k: string]: {
                 /**
-                 * The data type of the parameter.
+                 * The data types of the parameter.
                  */
                 type: string;
                 /**
@@ -7140,7 +7140,7 @@ interface Ai_Cf_Meta_Llama_3_3_70B_Instruct_Fp8_Fast_Messages {
          */
         parameters: {
           /**
-           * The type of the parameters object (usually 'object').
+           * The types of the parameters object (usually 'object').
            */
           type: string;
           /**
@@ -7153,7 +7153,7 @@ interface Ai_Cf_Meta_Llama_3_3_70B_Instruct_Fp8_Fast_Messages {
           properties: {
             [k: string]: {
               /**
-               * The data type of the parameter.
+               * The data types of the parameter.
                */
               type: string;
               /**
@@ -7166,7 +7166,7 @@ interface Ai_Cf_Meta_Llama_3_3_70B_Instruct_Fp8_Fast_Messages {
       }
     | {
         /**
-         * Specifies the type of tool (e.g., 'function').
+         * Specifies the types of tool (e.g., 'function').
          */
         type: string;
         /**
@@ -7186,7 +7186,7 @@ interface Ai_Cf_Meta_Llama_3_3_70B_Instruct_Fp8_Fast_Messages {
            */
           parameters: {
             /**
-             * The type of the parameters object (usually 'object').
+             * The types of the parameters object (usually 'object').
              */
             type: string;
             /**
@@ -7199,7 +7199,7 @@ interface Ai_Cf_Meta_Llama_3_3_70B_Instruct_Fp8_Fast_Messages {
             properties: {
               [k: string]: {
                 /**
-                 * The data type of the parameter.
+                 * The data types of the parameter.
                  */
                 type: string;
                 /**
@@ -7551,7 +7551,7 @@ interface Ai_Cf_Qwen_Qwen2_5_Coder_32B_Instruct_Messages {
          */
         parameters: {
           /**
-           * The type of the parameters object (usually 'object').
+           * The types of the parameters object (usually 'object').
            */
           type: string;
           /**
@@ -7564,7 +7564,7 @@ interface Ai_Cf_Qwen_Qwen2_5_Coder_32B_Instruct_Messages {
           properties: {
             [k: string]: {
               /**
-               * The data type of the parameter.
+               * The data types of the parameter.
                */
               type: string;
               /**
@@ -7577,7 +7577,7 @@ interface Ai_Cf_Qwen_Qwen2_5_Coder_32B_Instruct_Messages {
       }
     | {
         /**
-         * Specifies the type of tool (e.g., 'function').
+         * Specifies the types of tool (e.g., 'function').
          */
         type: string;
         /**
@@ -7597,7 +7597,7 @@ interface Ai_Cf_Qwen_Qwen2_5_Coder_32B_Instruct_Messages {
            */
           parameters: {
             /**
-             * The type of the parameters object (usually 'object').
+             * The types of the parameters object (usually 'object').
              */
             type: string;
             /**
@@ -7610,7 +7610,7 @@ interface Ai_Cf_Qwen_Qwen2_5_Coder_32B_Instruct_Messages {
             properties: {
               [k: string]: {
                 /**
-                 * The data type of the parameter.
+                 * The data types of the parameter.
                  */
                 type: string;
                 /**
@@ -7825,7 +7825,7 @@ interface Ai_Cf_Qwen_Qwq_32B_Messages {
          */
         parameters: {
           /**
-           * The type of the parameters object (usually 'object').
+           * The types of the parameters object (usually 'object').
            */
           type: string;
           /**
@@ -7838,7 +7838,7 @@ interface Ai_Cf_Qwen_Qwq_32B_Messages {
           properties: {
             [k: string]: {
               /**
-               * The data type of the parameter.
+               * The data types of the parameter.
                */
               type: string;
               /**
@@ -7851,7 +7851,7 @@ interface Ai_Cf_Qwen_Qwq_32B_Messages {
       }
     | {
         /**
-         * Specifies the type of tool (e.g., 'function').
+         * Specifies the types of tool (e.g., 'function').
          */
         type: string;
         /**
@@ -7871,7 +7871,7 @@ interface Ai_Cf_Qwen_Qwq_32B_Messages {
            */
           parameters: {
             /**
-             * The type of the parameters object (usually 'object').
+             * The types of the parameters object (usually 'object').
              */
             type: string;
             /**
@@ -7884,7 +7884,7 @@ interface Ai_Cf_Qwen_Qwq_32B_Messages {
             properties: {
               [k: string]: {
                 /**
-                 * The data type of the parameter.
+                 * The data types of the parameter.
                  */
                 type: string;
                 /**
@@ -8099,7 +8099,7 @@ interface Ai_Cf_Mistralai_Mistral_Small_3_1_24B_Instruct_Messages {
          */
         parameters: {
           /**
-           * The type of the parameters object (usually 'object').
+           * The types of the parameters object (usually 'object').
            */
           type: string;
           /**
@@ -8112,7 +8112,7 @@ interface Ai_Cf_Mistralai_Mistral_Small_3_1_24B_Instruct_Messages {
           properties: {
             [k: string]: {
               /**
-               * The data type of the parameter.
+               * The data types of the parameter.
                */
               type: string;
               /**
@@ -8125,7 +8125,7 @@ interface Ai_Cf_Mistralai_Mistral_Small_3_1_24B_Instruct_Messages {
       }
     | {
         /**
-         * Specifies the type of tool (e.g., 'function').
+         * Specifies the types of tool (e.g., 'function').
          */
         type: string;
         /**
@@ -8145,7 +8145,7 @@ interface Ai_Cf_Mistralai_Mistral_Small_3_1_24B_Instruct_Messages {
            */
           parameters: {
             /**
-             * The type of the parameters object (usually 'object').
+             * The types of the parameters object (usually 'object').
              */
             type: string;
             /**
@@ -8158,7 +8158,7 @@ interface Ai_Cf_Mistralai_Mistral_Small_3_1_24B_Instruct_Messages {
             properties: {
               [k: string]: {
                 /**
-                 * The data type of the parameter.
+                 * The data types of the parameter.
                  */
                 type: string;
                 /**
@@ -8355,7 +8355,7 @@ interface Ai_Cf_Google_Gemma_3_12B_It_Messages {
          */
         parameters: {
           /**
-           * The type of the parameters object (usually 'object').
+           * The types of the parameters object (usually 'object').
            */
           type: string;
           /**
@@ -8368,7 +8368,7 @@ interface Ai_Cf_Google_Gemma_3_12B_It_Messages {
           properties: {
             [k: string]: {
               /**
-               * The data type of the parameter.
+               * The data types of the parameter.
                */
               type: string;
               /**
@@ -8381,7 +8381,7 @@ interface Ai_Cf_Google_Gemma_3_12B_It_Messages {
       }
     | {
         /**
-         * Specifies the type of tool (e.g., 'function').
+         * Specifies the types of tool (e.g., 'function').
          */
         type: string;
         /**
@@ -8401,7 +8401,7 @@ interface Ai_Cf_Google_Gemma_3_12B_It_Messages {
            */
           parameters: {
             /**
-             * The type of the parameters object (usually 'object').
+             * The types of the parameters object (usually 'object').
              */
             type: string;
             /**
@@ -8414,7 +8414,7 @@ interface Ai_Cf_Google_Gemma_3_12B_It_Messages {
             properties: {
               [k: string]: {
                 /**
-                 * The data type of the parameter.
+                 * The data types of the parameter.
                  */
                 type: string;
                 /**
@@ -8635,7 +8635,7 @@ interface Ai_Cf_Meta_Llama_4_Scout_17B_16E_Instruct_Messages {
          */
         parameters: {
           /**
-           * The type of the parameters object (usually 'object').
+           * The types of the parameters object (usually 'object').
            */
           type: string;
           /**
@@ -8648,7 +8648,7 @@ interface Ai_Cf_Meta_Llama_4_Scout_17B_16E_Instruct_Messages {
           properties: {
             [k: string]: {
               /**
-               * The data type of the parameter.
+               * The data types of the parameter.
                */
               type: string;
               /**
@@ -8661,7 +8661,7 @@ interface Ai_Cf_Meta_Llama_4_Scout_17B_16E_Instruct_Messages {
       }
     | {
         /**
-         * Specifies the type of tool (e.g., 'function').
+         * Specifies the types of tool (e.g., 'function').
          */
         type: string;
         /**
@@ -8681,7 +8681,7 @@ interface Ai_Cf_Meta_Llama_4_Scout_17B_16E_Instruct_Messages {
            */
           parameters: {
             /**
-             * The type of the parameters object (usually 'object').
+             * The types of the parameters object (usually 'object').
              */
             type: string;
             /**
@@ -8694,7 +8694,7 @@ interface Ai_Cf_Meta_Llama_4_Scout_17B_16E_Instruct_Messages {
             properties: {
               [k: string]: {
                 /**
-                 * The data type of the parameter.
+                 * The data types of the parameter.
                  */
                 type: string;
                 /**
@@ -8874,7 +8874,7 @@ interface Ai_Cf_Meta_Llama_4_Scout_17B_16E_Instruct_Messages_Inner {
          */
         parameters: {
           /**
-           * The type of the parameters object (usually 'object').
+           * The types of the parameters object (usually 'object').
            */
           type: string;
           /**
@@ -8887,7 +8887,7 @@ interface Ai_Cf_Meta_Llama_4_Scout_17B_16E_Instruct_Messages_Inner {
           properties: {
             [k: string]: {
               /**
-               * The data type of the parameter.
+               * The data types of the parameter.
                */
               type: string;
               /**
@@ -8900,7 +8900,7 @@ interface Ai_Cf_Meta_Llama_4_Scout_17B_16E_Instruct_Messages_Inner {
       }
     | {
         /**
-         * Specifies the type of tool (e.g., 'function').
+         * Specifies the types of tool (e.g., 'function').
          */
         type: string;
         /**
@@ -8920,7 +8920,7 @@ interface Ai_Cf_Meta_Llama_4_Scout_17B_16E_Instruct_Messages_Inner {
            */
           parameters: {
             /**
-             * The type of the parameters object (usually 'object').
+             * The types of the parameters object (usually 'object').
              */
             type: string;
             /**
@@ -8933,7 +8933,7 @@ interface Ai_Cf_Meta_Llama_4_Scout_17B_16E_Instruct_Messages_Inner {
             properties: {
               [k: string]: {
                 /**
-                 * The data type of the parameter.
+                 * The data types of the parameter.
                  */
                 type: string;
                 /**
@@ -9023,7 +9023,7 @@ type Ai_Cf_Meta_Llama_4_Scout_17B_16E_Instruct_Output = {
      */
     id?: string;
     /**
-     * Specifies the type of tool (e.g., 'function').
+     * Specifies the types of tool (e.g., 'function').
      */
     type?: string;
     /**
@@ -9148,7 +9148,7 @@ interface Ai_Cf_Qwen_Qwen3_30B_A3B_Fp8_Messages {
          */
         parameters: {
           /**
-           * The type of the parameters object (usually 'object').
+           * The types of the parameters object (usually 'object').
            */
           type: string;
           /**
@@ -9161,7 +9161,7 @@ interface Ai_Cf_Qwen_Qwen3_30B_A3B_Fp8_Messages {
           properties: {
             [k: string]: {
               /**
-               * The data type of the parameter.
+               * The data types of the parameter.
                */
               type: string;
               /**
@@ -9174,7 +9174,7 @@ interface Ai_Cf_Qwen_Qwen3_30B_A3B_Fp8_Messages {
       }
     | {
         /**
-         * Specifies the type of tool (e.g., 'function').
+         * Specifies the types of tool (e.g., 'function').
          */
         type: string;
         /**
@@ -9194,7 +9194,7 @@ interface Ai_Cf_Qwen_Qwen3_30B_A3B_Fp8_Messages {
            */
           parameters: {
             /**
-             * The type of the parameters object (usually 'object').
+             * The types of the parameters object (usually 'object').
              */
             type: string;
             /**
@@ -9207,7 +9207,7 @@ interface Ai_Cf_Qwen_Qwen3_30B_A3B_Fp8_Messages {
             properties: {
               [k: string]: {
                 /**
-                 * The data type of the parameter.
+                 * The data types of the parameter.
                  */
                 type: string;
                 /**
@@ -9371,7 +9371,7 @@ interface Ai_Cf_Qwen_Qwen3_30B_A3B_Fp8_Messages_1 {
          */
         parameters: {
           /**
-           * The type of the parameters object (usually 'object').
+           * The types of the parameters object (usually 'object').
            */
           type: string;
           /**
@@ -9384,7 +9384,7 @@ interface Ai_Cf_Qwen_Qwen3_30B_A3B_Fp8_Messages_1 {
           properties: {
             [k: string]: {
               /**
-               * The data type of the parameter.
+               * The data types of the parameter.
                */
               type: string;
               /**
@@ -9397,7 +9397,7 @@ interface Ai_Cf_Qwen_Qwen3_30B_A3B_Fp8_Messages_1 {
       }
     | {
         /**
-         * Specifies the type of tool (e.g., 'function').
+         * Specifies the types of tool (e.g., 'function').
          */
         type: string;
         /**
@@ -9417,7 +9417,7 @@ interface Ai_Cf_Qwen_Qwen3_30B_A3B_Fp8_Messages_1 {
            */
           parameters: {
             /**
-             * The type of the parameters object (usually 'object').
+             * The types of the parameters object (usually 'object').
              */
             type: string;
             /**
@@ -9430,7 +9430,7 @@ interface Ai_Cf_Qwen_Qwen3_30B_A3B_Fp8_Messages_1 {
             properties: {
               [k: string]: {
                 /**
-                 * The data type of the parameter.
+                 * The data types of the parameter.
                  */
                 type: string;
                 /**
@@ -9500,7 +9500,7 @@ interface Ai_Cf_Qwen_Qwen3_30B_A3B_Fp8_Chat_Completion_Response {
    */
   id?: string;
   /**
-   * Object type identifier
+   * Object types identifier
    */
   object?: "chat.completion";
   /**
@@ -9600,7 +9600,7 @@ interface Ai_Cf_Qwen_Qwen3_30B_A3B_Fp8_Text_Completion_Response {
    */
   id?: string;
   /**
-   * Object type identifier
+   * Object types identifier
    */
   object?: "text_completion";
   /**
@@ -9879,14 +9879,14 @@ declare abstract class Base_Ai_Cf_Qwen_Qwen3_Embedding_0_6B {
 type Ai_Cf_Pipecat_Ai_Smart_Turn_V2_Input =
   | {
       /**
-       * readable stream with audio data and content-type specified for that data
+       * readable stream with audio data and content-types specified for that data
        */
       audio: {
         body: object;
         contentType: string;
       };
       /**
-       * type of data PCM data that's sent to the inference server as raw array
+       * types of data PCM data that's sent to the inference server as raw array
        */
       dtype?: "uint8" | "float32" | "float64";
     }
@@ -9896,7 +9896,7 @@ type Ai_Cf_Pipecat_Ai_Smart_Turn_V2_Input =
        */
       audio: string;
       /**
-       * type of data PCM data that's sent to the inference server as raw array
+       * types of data PCM data that's sent to the inference server as raw array
        */
       dtype?: "uint8" | "float32" | "float64";
     };
@@ -10022,7 +10022,7 @@ interface Ai_Cf_Deepgram_Aura_1_Input {
    */
   encoding?: "linear16" | "flac" | "mulaw" | "alaw" | "mp3" | "opus" | "aac";
   /**
-   * Container specifies the file format wrapper for the output audio. The available options depend on the encoding type..
+   * Container specifies the file format wrapper for the output audio. The available options depend on the encoding types..
    */
   container?: "none" | "wav" | "ogg";
   /**
@@ -10034,7 +10034,7 @@ interface Ai_Cf_Deepgram_Aura_1_Input {
    */
   sample_rate?: number;
   /**
-   * The bitrate of the audio in bits per second. Choose from predefined ranges or specific values based on the encoding type.
+   * The bitrate of the audio in bits per second. Choose from predefined ranges or specific values based on the encoding types.
    */
   bit_rate?: number;
 }
@@ -10203,7 +10203,7 @@ interface Ai_Cf_Aisingapore_Gemma_Sea_Lion_V4_27B_It_Messages {
          */
         parameters: {
           /**
-           * The type of the parameters object (usually 'object').
+           * The types of the parameters object (usually 'object').
            */
           type: string;
           /**
@@ -10216,7 +10216,7 @@ interface Ai_Cf_Aisingapore_Gemma_Sea_Lion_V4_27B_It_Messages {
           properties: {
             [k: string]: {
               /**
-               * The data type of the parameter.
+               * The data types of the parameter.
                */
               type: string;
               /**
@@ -10229,7 +10229,7 @@ interface Ai_Cf_Aisingapore_Gemma_Sea_Lion_V4_27B_It_Messages {
       }
     | {
         /**
-         * Specifies the type of tool (e.g., 'function').
+         * Specifies the types of tool (e.g., 'function').
          */
         type: string;
         /**
@@ -10249,7 +10249,7 @@ interface Ai_Cf_Aisingapore_Gemma_Sea_Lion_V4_27B_It_Messages {
            */
           parameters: {
             /**
-             * The type of the parameters object (usually 'object').
+             * The types of the parameters object (usually 'object').
              */
             type: string;
             /**
@@ -10262,7 +10262,7 @@ interface Ai_Cf_Aisingapore_Gemma_Sea_Lion_V4_27B_It_Messages {
             properties: {
               [k: string]: {
                 /**
-                 * The data type of the parameter.
+                 * The data types of the parameter.
                  */
                 type: string;
                 /**
@@ -10426,7 +10426,7 @@ interface Ai_Cf_Aisingapore_Gemma_Sea_Lion_V4_27B_It_Messages_1 {
          */
         parameters: {
           /**
-           * The type of the parameters object (usually 'object').
+           * The types of the parameters object (usually 'object').
            */
           type: string;
           /**
@@ -10439,7 +10439,7 @@ interface Ai_Cf_Aisingapore_Gemma_Sea_Lion_V4_27B_It_Messages_1 {
           properties: {
             [k: string]: {
               /**
-               * The data type of the parameter.
+               * The data types of the parameter.
                */
               type: string;
               /**
@@ -10452,7 +10452,7 @@ interface Ai_Cf_Aisingapore_Gemma_Sea_Lion_V4_27B_It_Messages_1 {
       }
     | {
         /**
-         * Specifies the type of tool (e.g., 'function').
+         * Specifies the types of tool (e.g., 'function').
          */
         type: string;
         /**
@@ -10472,7 +10472,7 @@ interface Ai_Cf_Aisingapore_Gemma_Sea_Lion_V4_27B_It_Messages_1 {
            */
           parameters: {
             /**
-             * The type of the parameters object (usually 'object').
+             * The types of the parameters object (usually 'object').
              */
             type: string;
             /**
@@ -10485,7 +10485,7 @@ interface Ai_Cf_Aisingapore_Gemma_Sea_Lion_V4_27B_It_Messages_1 {
             properties: {
               [k: string]: {
                 /**
-                 * The data type of the parameter.
+                 * The data types of the parameter.
                  */
                 type: string;
                 /**
@@ -10555,7 +10555,7 @@ interface Ai_Cf_Aisingapore_Gemma_Sea_Lion_V4_27B_It_Chat_Completion_Response {
    */
   id?: string;
   /**
-   * Object type identifier
+   * Object types identifier
    */
   object?: "chat.completion";
   /**
@@ -10655,7 +10655,7 @@ interface Ai_Cf_Aisingapore_Gemma_Sea_Lion_V4_27B_It_Text_Completion_Response {
    */
   id?: string;
   /**
-   * Object type identifier
+   * Object types identifier
    */
   object?: "text_completion";
   /**
@@ -10793,7 +10793,7 @@ interface Ai_Cf_Deepgram_Flux_Output {
    */
   sequence_id?: number;
   /**
-   * The type of event being reported.
+   * The types of event being reported.
    */
   event?:
     "Update" | "StartOfTurn" | "EagerEndOfTurn" | "TurnResumed" | "EndOfTurn";
@@ -10885,7 +10885,7 @@ interface Ai_Cf_Deepgram_Aura_2_En_Input {
    */
   encoding?: "linear16" | "flac" | "mulaw" | "alaw" | "mp3" | "opus" | "aac";
   /**
-   * Container specifies the file format wrapper for the output audio. The available options depend on the encoding type..
+   * Container specifies the file format wrapper for the output audio. The available options depend on the encoding types..
    */
   container?: "none" | "wav" | "ogg";
   /**
@@ -10897,7 +10897,7 @@ interface Ai_Cf_Deepgram_Aura_2_En_Input {
    */
   sample_rate?: number;
   /**
-   * The bitrate of the audio in bits per second. Choose from predefined ranges or specific values based on the encoding type.
+   * The bitrate of the audio in bits per second. Choose from predefined ranges or specific values based on the encoding types.
    */
   bit_rate?: number;
 }
@@ -10929,7 +10929,7 @@ interface Ai_Cf_Deepgram_Aura_2_Es_Input {
    */
   encoding?: "linear16" | "flac" | "mulaw" | "alaw" | "mp3" | "opus" | "aac";
   /**
-   * Container specifies the file format wrapper for the output audio. The available options depend on the encoding type..
+   * Container specifies the file format wrapper for the output audio. The available options depend on the encoding types..
    */
   container?: "none" | "wav" | "ogg";
   /**
@@ -10941,7 +10941,7 @@ interface Ai_Cf_Deepgram_Aura_2_Es_Input {
    */
   sample_rate?: number;
   /**
-   * The bitrate of the audio in bits per second. Choose from predefined ranges or specific values based on the encoding type.
+   * The bitrate of the audio in bits per second. Choose from predefined ranges or specific values based on the encoding types.
    */
   bit_rate?: number;
 }
@@ -11234,7 +11234,7 @@ declare abstract class Ai<AiModelList extends AiModelListType = AiModels> {
   // The `Exclude<..., keyof AiModelList>` constraint forces TypeScript to
   // route any model name that is a literal key of `AiModelList` to one of
   // the known-model overloads above (so input/output mismatches surface as
-  // type errors rather than silently falling back to `Record<string, unknown>`).
+  // types errors rather than silently falling back to `Record<string, unknown>`).
   // Names that aren't in `AiModelList` — e.g. third-party gateway models
   // like `"google/nano-banana"` — still hit this overload.
   run<Model extends string>(
@@ -11813,7 +11813,7 @@ interface BrowserRunBaseOptions {
     sourcePort?: number;
     partitionKey?: string;
   }>;
-  /** Emulate a specific CSS media type (e.g. `"screen"`, `"print"`). */
+  /** Emulate a specific CSS media types (e.g. `"screen"`, `"print"`). */
   emulateMediaType?: string;
   /** Navigation options. @see https://pptr.dev/api/puppeteer.gotooptions */
   gotoOptions?: {
@@ -12695,7 +12695,7 @@ interface RequestInitCfPropertiesImage extends BasicImageTransformations {
    *    the WebP-lossless format.
    *  - json: instead of generating an image, outputs information about the
    *    image, in JSON format. The JSON object will contain image size
-   *    (before and after resizing), source image’s MIME type, file size, etc.
+   *    (before and after resizing), source image’s MIME types, file size, etc.
    * - jpeg: generate images in JPEG format.
    * - png: generate images in PNG format.
    */
@@ -13557,7 +13557,7 @@ declare abstract class D1PreparedStatement {
 // `Disposable` was added to TypeScript's standard lib types in version 5.2.
 // To support older TypeScript versions, define an empty `Disposable` interface.
 // Users won't be able to use `using`/`Symbol.dispose` without upgrading to 5.2,
-// but this will ensure type checking on older versions still passes.
+// but this will ensure types checking on older versions still passes.
 // TypeScript's interface merging will ensure our empty interface is effectively
 // ignored when `Disposable` is included in the standard lib.
 interface Disposable {}
@@ -13708,7 +13708,7 @@ interface FlagshipEvaluationError extends Error {}
  */
 declare abstract class Flagship {
   /**
-   * Get a flag value without type checking.
+   * Get a flag value without types checking.
    * @param flagKey The key of the flag to evaluate.
    * @param defaultValue Optional default value returned when evaluation fails.
    * @param context Optional evaluation context for targeting rules.
@@ -13721,7 +13721,7 @@ declare abstract class Flagship {
   /**
    * Get a boolean flag value.
    * @param flagKey The key of the flag to evaluate.
-   * @param defaultValue Default value returned when evaluation fails or the flag type does not match.
+   * @param defaultValue Default value returned when evaluation fails or the flag types does not match.
    * @param context Optional evaluation context for targeting rules.
    */
   getBooleanValue(
@@ -13732,7 +13732,7 @@ declare abstract class Flagship {
   /**
    * Get a string flag value.
    * @param flagKey The key of the flag to evaluate.
-   * @param defaultValue Default value returned when evaluation fails or the flag type does not match.
+   * @param defaultValue Default value returned when evaluation fails or the flag types does not match.
    * @param context Optional evaluation context for targeting rules.
    */
   getStringValue(
@@ -13743,7 +13743,7 @@ declare abstract class Flagship {
   /**
    * Get a number flag value.
    * @param flagKey The key of the flag to evaluate.
-   * @param defaultValue Default value returned when evaluation fails or the flag type does not match.
+   * @param defaultValue Default value returned when evaluation fails or the flag types does not match.
    * @param context Optional evaluation context for targeting rules.
    */
   getNumberValue(
@@ -13754,7 +13754,7 @@ declare abstract class Flagship {
   /**
    * Get an object flag value.
    * @param flagKey The key of the flag to evaluate.
-   * @param defaultValue Default value returned when evaluation fails or the flag type does not match.
+   * @param defaultValue Default value returned when evaluation fails or the flag types does not match.
    * @param context Optional evaluation context for targeting rules.
    */
   getObjectValue<T extends object>(
@@ -13765,7 +13765,7 @@ declare abstract class Flagship {
   /**
    * Get a boolean flag value with full evaluation details.
    * @param flagKey The key of the flag to evaluate.
-   * @param defaultValue Default value returned when evaluation fails or the flag type does not match.
+   * @param defaultValue Default value returned when evaluation fails or the flag types does not match.
    * @param context Optional evaluation context for targeting rules.
    */
   getBooleanDetails(
@@ -13776,7 +13776,7 @@ declare abstract class Flagship {
   /**
    * Get a string flag value with full evaluation details.
    * @param flagKey The key of the flag to evaluate.
-   * @param defaultValue Default value returned when evaluation fails or the flag type does not match.
+   * @param defaultValue Default value returned when evaluation fails or the flag types does not match.
    * @param context Optional evaluation context for targeting rules.
    */
   getStringDetails(
@@ -13787,7 +13787,7 @@ declare abstract class Flagship {
   /**
    * Get a number flag value with full evaluation details.
    * @param flagKey The key of the flag to evaluate.
-   * @param defaultValue Default value returned when evaluation fails or the flag type does not match.
+   * @param defaultValue Default value returned when evaluation fails or the flag types does not match.
    * @param context Optional evaluation context for targeting rules.
    */
   getNumberDetails(
@@ -13798,7 +13798,7 @@ declare abstract class Flagship {
   /**
    * Get an object flag value with full evaluation details.
    * @param flagKey The key of the flag to evaluate.
-   * @param defaultValue Default value returned when evaluation fails or the flag type does not match.
+   * @param defaultValue Default value returned when evaluation fails or the flag types does not match.
    * @param context Optional evaluation context for targeting rules.
    */
   getObjectDetails<T extends object>(
@@ -14064,7 +14064,7 @@ interface HostedImagesBinding {
 }
 interface ImagesBinding {
   /**
-   * Get image metadata (type, width and height)
+   * Get image metadata (types, width and height)
    * @throws {@link ImagesError} with code 9412 if input is not an image
    * @param stream The image bytes
    */
@@ -14119,7 +14119,7 @@ interface ImageTransformationResult {
    */
   response(): Response;
   /**
-   * The content type of the returned image
+   * The content types of the returned image
    */
   contentType(): string;
   /**
@@ -14192,8 +14192,8 @@ interface MediaTransformationResult {
    */
   response(): Promise<Response>;
   /**
-   * Returns the MIME type of the transformed media.
-   * @returns A promise containing the content type string (e.g., 'image/jpeg', 'video/mp4')
+   * Returns the MIME types of the transformed media.
+   * @returns A promise containing the content types string (e.g., 'image/jpeg', 'video/mp4')
    */
   contentType(): Promise<string>;
 }
@@ -14211,11 +14211,11 @@ type MediaTransformationInputOptions = {
 };
 /**
  * Configuration options for Media Transformations output.
- * Controls the format, timing, and type of the generated output.
+ * Controls the format, timing, and types of the generated output.
  */
 type MediaTransformationOutputOptions = {
   /**
-   * Output mode determining the type of media to generate
+   * Output mode determining the types of media to generate
    */
   mode?: "video" | "spritesheet" | "frame" | "audio";
   /** Whether to include audio in the output */
@@ -14331,7 +14331,7 @@ declare module "cloudflare:pipelines" {
   };
   export interface Pipeline<T extends PipelineRecord = PipelineRecord> {
     /**
-     * The Pipeline interface represents the type of a binding to a Pipeline
+     * The Pipeline interface represents the types of a binding to a Pipeline
      *
      * @param records The records to send to the pipeline
      */
@@ -14357,7 +14357,7 @@ interface PubSubMessage {
   // A Unix timestamp (seconds from Jan 1, 1970), set when the Pub/Sub Broker
   // received the message from the client.
   readonly receivedAt: number;
-  // An (optional) string with the MIME type of the payload, if set by the
+  // An (optional) string with the MIME types of the payload, if set by the
   // client.
   readonly contentType: string;
   // Set to 1 when the payload is a UTF-8 string
@@ -14391,7 +14391,7 @@ interface RateLimit {
 // strips all `module` blocks.
 declare namespace Rpc {
   // Branded types for identifying `WorkerEntrypoint`/`DurableObject`/`Target`s.
-  // TypeScript uses *structural* typing meaning anything with the same shape as type `T` is a `T`.
+  // TypeScript uses *structural* typing meaning anything with the same shape as types `T` is a `T`.
   // For the classes exported by `cloudflare:workers` we want *nominal* typing (i.e. we only want to
   // accept `WorkerEntrypoint` from `cloudflare:workers`, not any other class with the same shape)
   export const __RPC_STUB_BRAND: "__RPC_STUB_BRAND";
@@ -14416,9 +14416,9 @@ declare namespace Rpc {
   // Types that can be used through `Stub`s
   export type Stubable = RpcTargetBranded | ((...args: any[]) => any);
   // Types that can be passed over RPC
-  // The reason for using a generic type here is to build a serializable subset of structured
+  // The reason for using a generic types here is to build a serializable subset of structured
   //   cloneable composite types. This allows types defined with the "interface" keyword to pass the
-  //   serializable check as well. Otherwise, only types defined with the "type" keyword would pass.
+  //   serializable check as well. Otherwise, only types defined with the "types" keyword would pass.
   type Serializable<T> =
     // Structured cloneables
     | BaseType
@@ -14436,8 +14436,8 @@ declare namespace Rpc {
     | Stub<Stubable>
     // Serialized as stubs, see `Stubify`
     | Stubable;
-  // Base type for all RPC stubs, including common memory management methods.
-  // `T` is used as a marker type for unwrapping `Stub`s later.
+  // Base types for all RPC stubs, including common memory management methods.
+  // `T` is used as a marker types for unwrapping `Stub`s later.
   interface StubBase<T extends Stubable> extends Disposable {
     [__RPC_STUB_BRAND]: T;
     dup(): this;
@@ -14482,7 +14482,7 @@ declare namespace Rpc {
   type UnstubifyAll<A extends any[]> = {
     [I in keyof A]: Unstubify<A[I]>;
   };
-  // Utility type for adding `Provider`/`Disposable`s to `object` types only.
+  // Utility types for adding `Provider`/`Disposable`s to `object` types only.
   // Note `unknown & T` is equivalent to `T`.
   type MaybeProvider<T> = T extends object ? Provider<T> : unknown;
   type MaybeDisposable<T> = T extends object ? Disposable : unknown;
@@ -14508,7 +14508,7 @@ declare namespace Rpc {
   type MaybeCallableProvider<T> = T extends (...args: any[]) => any
     ? MethodOrProperty<T>
     : unknown;
-  // Base type for all other types providing RPC-like interfaces.
+  // Base types for all other types providing RPC-like interfaces.
   // Rewrites all methods/properties to be `MethodOrProperty`s, while preserving callable types.
   // `Reserved` names (e.g. stub method names like `dup()`) and symbols can't be accessed over RPC.
   export type Provider<
@@ -14528,7 +14528,7 @@ declare namespace Cloudflare {
   // The specific project can extend `Env` by redeclaring it in project-specific files. Typescript
   // will merge all declarations.
   //
-  // You can use `wrangler types` to generate the `Env` type automatically.
+  // You can use `wrangler types` to generate the `Env` types automatically.
   interface Env {}
   // Project-specific parameters used to inform types.
   //
@@ -14538,7 +14538,7 @@ declare namespace Cloudflare {
   // A project should have a declaration like this:
   //
   //     interface GlobalProps {
-  //       // Declares the main module's exports. Used to populate Cloudflare.Exports aka the type
+  //       // Declares the main module's exports. Used to populate Cloudflare.Exports aka the types
   //       // of `ctx.exports`.
   //       mainModule: typeof import("my-main-module");
   //
@@ -14549,15 +14549,15 @@ declare namespace Cloudflare {
   //
   // You can use `wrangler types` to generate `GlobalProps` automatically.
   interface GlobalProps {}
-  // Evaluates to the type of a property in GlobalProps, defaulting to `Default` if it is not
+  // Evaluates to the types of a property in GlobalProps, defaulting to `Default` if it is not
   // present.
   type GlobalProp<K extends string, Default> = K extends keyof GlobalProps
     ? GlobalProps[K]
     : Default;
-  // The type of the program's main module exports, if known. Requires `GlobalProps` to declare the
+  // The types of the program's main module exports, if known. Requires `GlobalProps` to declare the
   // `mainModule` property.
   type MainModule = GlobalProp<"mainModule", {}>;
-  // The type of ctx.exports, which contains loopback bindings for all top-level exports.
+  // The types of ctx.exports, which contains loopback bindings for all top-level exports.
   type Exports = {
     [K in keyof MainModule]: LoopbackForExport<MainModule[K]> &
       // If the export is listed in `durableNamespaces`, then it is also a
@@ -15170,10 +15170,10 @@ interface StreamScopedDownloads {
   /**
    * Generates a download for a video when a video is ready to view. Available
    * types are `default` and `audio`. Defaults to `default` when omitted.
-   * @param downloadType The download type to create.
+   * @param downloadType The download types to create.
    * @returns The current downloads for the video.
    * @throws {NotFoundError} if the video is not found
-   * @throws {BadRequestError} if the download type is invalid
+   * @throws {BadRequestError} if the download types is invalid
    * @throws {StreamError} if the video duration is too long to generate a download
    * @throws {StreamError} if the video is not ready to stream
    * @throws {InternalError} if an unexpected error occurs
@@ -15191,7 +15191,7 @@ interface StreamScopedDownloads {
   /**
    * Delete the downloads for a video. Available types are `default` and `audio`.
    * Defaults to `default` when omitted.
-   * @param downloadType The download type to delete.
+   * @param downloadType The download types to delete.
    * @returns A promise that resolves when deletion completes.
    * @throws {NotFoundError} if the video or downloads are not found
    * @throws {InternalError} if an unexpected error occurs
@@ -15339,16 +15339,16 @@ type StreamDownload = {
   url?: string;
 };
 /**
- * An object with download type keys. Each key is optional and only present if that
- * download type has been created.
+ * An object with download types keys. Each key is optional and only present if that
+ * download types has been created.
  */
 type StreamDownloadGetResponse = {
   /**
-   * The audio-only download. Only present if this download type has been created.
+   * The audio-only download. Only present if this download types has been created.
    */
   audio?: StreamDownload;
   /**
-   * The default video download. Only present if this download type has been created.
+   * The default video download. Only present if this download types has been created.
    */
   default?: StreamDownload;
 };
@@ -15724,7 +15724,7 @@ declare namespace TailStream {
   }
   interface StreamDiagnostic {
     readonly type: "streamDiagnostic";
-    // To add new diagnostic types, define a new interface and add it to this union type.
+    // To add new diagnostic types, define a new interface and add it to this union types.
     readonly diagnostic: DroppedEventsDiagnostic;
   }
   // This marks the worker handler return information.
@@ -15887,7 +15887,7 @@ type VectorizeIndexConfig =
 /**
  * Metadata about an existing index.
  *
- * This type is exclusively for the Vectorize **beta** and will be deprecated once Vectorize RC is released.
+ * This types is exclusively for the Vectorize **beta** and will be deprecated once Vectorize RC is released.
  * See {@link VectorizeIndexInfo} for its post-beta equivalent.
  */
 interface VectorizeIndexDetails {
@@ -15947,7 +15947,7 @@ interface VectorizeMatches {
  * Results of an operation that performed a mutation on a set of vectors.
  * Here, `ids` is a list of vectors that were successfully processed.
  *
- * This type is exclusively for the Vectorize **beta** and will be deprecated once Vectorize RC is released.
+ * This types is exclusively for the Vectorize **beta** and will be deprecated once Vectorize RC is released.
  * See {@link VectorizeAsyncMutation} for its post-beta equivalent.
  */
 interface VectorizeVectorMutation {
@@ -15957,7 +15957,7 @@ interface VectorizeVectorMutation {
   count: number;
 }
 /**
- * Result type indicating a mutation on the Vectorize Index.
+ * Result types indicating a mutation on the Vectorize Index.
  * Actual mutations are processed async where the `mutationId` is the unique identifier for the operation.
  */
 interface VectorizeAsyncMutation {
@@ -15967,7 +15967,7 @@ interface VectorizeAsyncMutation {
 /**
  * A Vectorize Vector Search Index for querying vectors/embeddings.
  *
- * This type is exclusively for the Vectorize **beta** and will be deprecated once Vectorize RC is released.
+ * This types is exclusively for the Vectorize **beta** and will be deprecated once Vectorize RC is released.
  * See {@link Vectorize} for its new implementation.
  */
 declare abstract class VectorizeIndex {
@@ -16308,7 +16308,7 @@ interface WorkflowInstanceRestartOptions {
      */
     count?: number;
     /**
-     * Step type filter. Use when different step types share the same name.
+     * Step types filter. Use when different step types share the same name.
      */
     type?: "do" | "sleep" | "waitForEvent";
   };
