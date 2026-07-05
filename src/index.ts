@@ -3,8 +3,11 @@ import { searchUser } from "./api/search-user";
 import { parseMembershipType } from "./bungie";
 import { aggregateUserActivity } from "./history";
 import { analyzeUserActivityHistories } from "./api/activity-history";
+import { cors } from "hono/cors";
 
 const app = new Hono<{ Bindings: CloudflareBindings }>();
+
+app.use("*", cors())
 
 app.get("/message", (c) => {
   return c.text("Bonjour!");
