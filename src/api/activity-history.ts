@@ -205,6 +205,7 @@ function analyzeOne(
     highlights: highlights.build(),
     completionType,
     completionReason,
+    period: h.period,
     targetUrl,
     rawData: withRaw ? h : undefined,
   };

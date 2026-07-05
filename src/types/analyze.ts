@@ -34,6 +34,7 @@ export interface AnalyzedActivity {
   completionType: CompletionType;
   completionReason?: CompletionReason;
 
+  period: string;
   targetUrl?: string;
   rawData?: unknown;
 }
