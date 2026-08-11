@@ -38,7 +38,7 @@ export async function aggregateUserActivity(
 
   // the last played character
   const characters = rCharacters.data ?? {};
-  const lastCharacter = _.head(Object.values(characters));
+  const lastCharacter = _.last(_.sortBy(Object.values(characters), (c) => new Date(c.dateLastPlayed).getTime()))
   const theEmblemHash = lastCharacter?.emblemHash;
 
   let emblemDefinition: DestinyInventoryItemDefinition | undefined;
