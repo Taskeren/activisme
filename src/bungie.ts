@@ -1,6 +1,7 @@
 import { HttpClient } from "@taskeren/bungie-api-ts/http";
 import { BungieMembershipType } from "@taskeren/bungie-api-ts/destiny2";
 import { HTTPException } from "hono/http-exception";
+import _ from "lodash";
 
 // :D
 // it's ok to leak this.
@@ -39,4 +40,10 @@ export function parseMembershipType(
   throw new HTTPException(400, {
     message: `Membership type "${s}" is invalid`,
   });
+}
+
+const BungieMembershipTypeInvert = _.invert(BungieMembershipType)
+
+export function getBungieMembershipTypeName(type: BungieMembershipType): string {
+  return BungieMembershipTypeInvert[type];
 }

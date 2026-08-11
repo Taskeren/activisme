@@ -8,7 +8,7 @@ import {
   getProfile,
   PlatformErrorCodes,
 } from "@taskeren/bungie-api-ts/destiny2";
-import { BUNGIE_API } from "../bungie";
+import { BUNGIE_API, getBungieMembershipTypeName } from "../bungie";
 import { HTTPException } from "hono/http-exception";
 import _ from "lodash";
 import { HistoriesResponse } from "../types/response";
@@ -98,7 +98,7 @@ async function listUserActivityHistory(
         return thisTime.getTime() >= beforeDate.getTime();
       });
       console.debug(
-        `getActivityHistory(${membershipType} @ ${destinyMembershipId}, character ${characters}, page ${page}): ${lengthUnfiltered} entries (${lengthUnfiltered - activities.length} filtered)`,
+        `getActivityHistory(${getBungieMembershipTypeName(membershipType)} ${destinyMembershipId}, character ${character}, page ${page}): ${lengthUnfiltered} entries (${lengthUnfiltered - activities.length} filtered)`,
       );
       list.push(...activities);
       if (lengthUnfiltered !== activities.length) {
