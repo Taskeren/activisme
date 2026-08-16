@@ -9,6 +9,7 @@ import routeDestiny2 from "./routes/d2";
 
 type Variables = {
   bungieToken: string;
+  membershipId: string;
 };
 
 export type AppContext = { Bindings: CloudflareBindings; Variables: Variables };

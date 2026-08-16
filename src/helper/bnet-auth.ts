@@ -55,7 +55,7 @@ export enum GetAccessTokenFromCookieError {
   SESSION_EXPIRED_REFRESH_ERROR,
 }
 
-export async function getAccessTokenFromCookie(
+export async function getAccessTokenInformation(
   c: Context<AppContext, any, any>,
 ) {
   const sessionId = getCookie(c, "session_id");
@@ -101,5 +101,5 @@ export async function getAccessTokenFromCookie(
     );
   }
 
-  return sessionInfo.access_token;
+  return sessionInfo;
 }

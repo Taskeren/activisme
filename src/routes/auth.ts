@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { AppLike } from "../index";
 import { getAccessToken } from "../helper/bnet-auth";
-import { getCookie, setCookie } from "hono/cookie";
+import { deleteCookie, getCookie, setCookie } from "hono/cookie";
 
 const app: AppLike = new Hono();
 
@@ -72,5 +72,10 @@ app.get("/cb", async (c) => {
     maxAge: SESSION_DURATION_SECONDS,
   });
 
-  return c.redirect("/");
+  return c.text("OK");
+});
+
+app.get("/logout", async (c) => {
+  deleteCookie(c, "session_id");
+  return c.text("OK");
 });

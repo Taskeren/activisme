@@ -1,14 +1,17 @@
 import { Hono } from "hono";
 import { AppLike } from "../index";
 import { BungieAccessTokenMiddleware } from "../middleware/bnet-auth";
-import { newClient } from "../bungie";
+import { BUNGIE_API, newClient } from "../bungie";
 import { getFriendList } from "@taskeren/bungie-api-ts/social";
 import {
   BungieMembershipType,
   DestinyComponentType,
   getProfile,
 } from "@taskeren/bungie-api-ts/destiny2";
-import { GeneralUser } from "@taskeren/bungie-api-ts/user";
+import {
+  GeneralUser,
+  getMembershipDataForCurrentUser,
+} from "@taskeren/bungie-api-ts/user";
 import _ from "lodash";
 import { unwrapResponse } from "../helper/bnet-api";
 
@@ -18,6 +21,18 @@ export default app;
 
 // Must-logged-in endpoints
 app.use("/me/*", BungieAccessTokenMiddleware);
+
+/**
+ * Current logged-in user data.
+ */
+app.get("/me", async (c) => {
+  const accessToken = c.get("bungieToken");
+  const resp = await getMembershipDataForCurrentUser(
+    newClient({ accessToken }),
+  );
+  const data = unwrapResponse(resp);
+  return c.json({ data });
+});
 
 /**
  * Stale friends list.
