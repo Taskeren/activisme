@@ -4,10 +4,30 @@ import { parseMembershipType } from "./bungie";
 import { aggregateUserActivity } from "./api/history";
 import { updateResponse } from "./api/activity-history";
 import { cors } from "hono/cors";
+import routeAuth from "./routes/auth";
+import routeDestiny2 from "./routes/d2";
 
-const app = new Hono<{ Bindings: CloudflareBindings }>();
+type Variables = {
+  bungieToken: string;
+};
 
-app.use("*", cors());
+export type AppContext = { Bindings: CloudflareBindings; Variables: Variables };
+export type AppLike = typeof app;
+
+const app = new Hono<AppContext>();
+
+app.use(
+  "*",
+  cors({
+    origin: ["http://localhost:5173", "https://activism.taske.ren"],
+    allowMethods: ["GET", "POST", "OPTIONS"],
+    allowHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  }),
+);
+
+app.route("/auth", routeAuth);
+app.route("/api", routeDestiny2);
 
 app.get("/message", (c) => {
   return c.text("Bonjour!");
