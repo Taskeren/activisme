@@ -28,14 +28,25 @@ export function newClient(options: NewClientOptions = {}): HttpClient {
       url.searchParams.set(key, config.params[key]);
     }
 
+    const body = JSON.stringify(config.body);
+
+    const headers = new Headers();
+    headers.set("X-API-Key", apiKey);
+    if (accessToken) {
+      headers.set("Authorization", `Bearer ${accessToken}`);
+    }
+
+    console.log(
+      `Sending requests to Bungie API: ${_.trimStart(config.url, "https://www.bungie.net/Platform")}`,
+      accessToken
+        ? `with access token (${accessToken})`
+        : "without access token",
+    );
+
     const r = await fetch(url, {
       method: config.method,
-      body: JSON.stringify(config.body),
-      headers: {
-        "X-API-Key": apiKey,
-        // append authorization if defined
-        ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
-      },
+      body,
+      headers,
     });
 
     return await r.json();

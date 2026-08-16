@@ -14,6 +14,7 @@ import {
 } from "@taskeren/bungie-api-ts/user";
 import _ from "lodash";
 import { unwrapResponse } from "../helper/bnet-api";
+import pLimit from "p-limit";
 
 const app: AppLike = new Hono();
 
@@ -28,7 +29,7 @@ app.use("/me/*", BungieAccessTokenMiddleware);
 app.get("/me", async (c) => {
   const accessToken = c.get("bungieToken");
   const resp = await getMembershipDataForCurrentUser(
-    newClient({ accessToken }),
+    newClient({ apiKey: c.env.BNET_API_KEY, accessToken }),
   );
   const data = unwrapResponse(resp);
   return c.json({ data });
@@ -41,10 +42,13 @@ app.get("/me", async (c) => {
  */
 app.get("/me/stale-friends", async (c) => {
   const accessToken = c.get("bungieToken");
-  const client = newClient({ accessToken });
+  const client = newClient({ apiKey: c.env.BNET_API_KEY, accessToken });
   const resp = await getFriendList(client);
   const friendListResponse = unwrapResponse(resp);
   const friends = friendListResponse.friends;
+
+  // use p-limit to limit the concurrency.
+  const limit = pLimit(20);
 
   // get last played time of the players in the friend list.
   // request and collect the promises in the array, and we'll await them later.
@@ -64,24 +68,35 @@ app.get("/me/stale-friends", async (c) => {
       continue;
     }
 
-    promises.push(
-      getProfile(client, {
-        membershipType: friend.lastSeenAsBungieMembershipType,
-        destinyMembershipId: friend.lastSeenAsMembershipId,
-        components: [DestinyComponentType.Characters],
-      }).then((data) => {
-        // find the last played character, and read the last played date.
-        const characters = unwrapResponse(data).characters.data ?? [];
-        const lastSeen = _.max(
-          _.map(Object.values(characters), (c) =>
-            new Date(c.dateLastPlayed).getTime(),
-          ),
-        );
+    const membershipType = friend.lastSeenAsBungieMembershipType;
+    const destinyMembershipId = friend.lastSeenAsMembershipId;
+    try {
+      promises.push(
+        limit(() =>
+          getProfile(client, {
+            membershipType: membershipType,
+            destinyMembershipId: destinyMembershipId,
+            components: [DestinyComponentType.Characters],
+          }).then((data) => {
+            // find the last played character, and read the last played date.
+            const characters = unwrapResponse(data).characters.data ?? [];
+            const lastSeen = _.max(
+              _.map(Object.values(characters), (c) =>
+                new Date(c.dateLastPlayed).getTime(),
+              ),
+            );
 
-        // return the user itself along with the last played date.
-        return { ...user, timestampLastPlayed: lastSeen };
-      }),
-    );
+            // return the user itself along with the last played date.
+            return { ...user, timestampLastPlayed: lastSeen };
+          }),
+        ),
+      );
+    } catch (e) {
+      console.error(
+        `Error occurred while getting profile for ${membershipType} @ ${destinyMembershipId}`,
+        e,
+      );
+    }
   }
   // wait for all promises.
   const awaited = await Promise.all(promises);

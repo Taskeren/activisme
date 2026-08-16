@@ -9,7 +9,8 @@
   "dependencies": {
     "@taskeren/bungie-api-ts": "^5.10.4",
     "hono": "^4.12.27",
-    "lodash": "^4.18.1"
+    "lodash": "^4.18.1",
+    "p-limit": "^7.3.1"
   },
   "devDependencies": {
     "@types/lodash": "^4.17.24",

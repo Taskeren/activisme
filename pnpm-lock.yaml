@@ -17,6 +17,9 @@ importers:
       lodash:
         specifier: ^4.18.1
         version: 4.18.1
+      p-limit:
+        specifier: ^7.3.1
+        version: 7.3.1
     devDependencies:
       '@types/lodash':
         specifier: ^4.17.24
@@ -468,6 +471,10 @@ packages:
     engines: {node: '>=22.0.0'}
     hasBin: true
 
+  p-limit@7.3.1:
+    resolution: {integrity: sha512-0trZaiG7Y7kN/Egy9a8j47t9osC0Tch4PaIWd9yGF6bvmlk7muExRvGNYb8sXBwEKMoNKsbNN9P8EefuQekE4Q==}
+    engines: {node: '>=20'}
+
   path-to-regexp@6.3.0:
     resolution: {integrity: sha512-Yhpw4T9C6hPpgPeA28us07OJeqZ5EzQTkbfwuhsUg0c237RomFoETJgmp2sa3F/41gfLE6G5cqcYwznmeEeOlQ==}
 
@@ -531,6 +538,10 @@ packages:
         optional: true
       utf-8-validate:
         optional: true
+
+  yocto-queue@1.2.2:
+    resolution: {integrity: sha512-4LCcse/U2MHZ63HAJVE+v71o7yOdIe4cZ70Wpf8D/IyjDKYQLV5GD46B+hSTjJsvV5PztjvHoU580EftxjDZFQ==}
+    engines: {node: '>=12.20'}
 
   youch-core@0.3.3:
     resolution: {integrity: sha512-ho7XuGjLaJ2hWHoK8yFnsUGy2Y5uDpqSTq1FkHLK4/oqKtyUU1AFbOOxY4IpC9f0fTLjwYbslUz0Po5BpD1wrA==}
@@ -837,6 +848,10 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
+  p-limit@7.3.1:
+    dependencies:
+      yocto-queue: 1.2.2
+
   path-to-regexp@6.3.0: {}
 
   pathe@2.0.3: {}
@@ -914,6 +929,8 @@ snapshots:
       - utf-8-validate
 
   ws@8.21.0: {}
+
+  yocto-queue@1.2.2: {}
 
   youch-core@0.3.3:
     dependencies:
