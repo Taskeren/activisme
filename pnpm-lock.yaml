@@ -19,7 +19,7 @@ importers:
         version: 4.18.1
       p-limit:
         specifier: ^7.3.1
-        version: 7.3.1
+        version: 7.3.2
     devDependencies:
       '@types/lodash':
         specifier: ^4.17.24
@@ -471,8 +471,8 @@ packages:
     engines: {node: '>=22.0.0'}
     hasBin: true
 
-  p-limit@7.3.1:
-    resolution: {integrity: sha512-0trZaiG7Y7kN/Egy9a8j47t9osC0Tch4PaIWd9yGF6bvmlk7muExRvGNYb8sXBwEKMoNKsbNN9P8EefuQekE4Q==}
+  p-limit@7.3.2:
+    resolution: {integrity: sha512-Ll0w3fU24vYpXoZmjjZIee6bJQDgG0oAyo1PdmFYI8UDwJJddaHAypxIH9avUu+t+lSsAwKVsb1jDCMIIChliw==}
     engines: {node: '>=20'}
 
   path-to-regexp@6.3.0:
@@ -848,7 +848,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  p-limit@7.3.1:
+  p-limit@7.3.2:
     dependencies:
       yocto-queue: 1.2.2
 
