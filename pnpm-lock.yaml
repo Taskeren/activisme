@@ -26,7 +26,7 @@ importers:
         version: 4.17.24
       '@types/node':
         specifier: ^26.1.0
-        version: 26.1.0
+        version: 26.4.1
       prettier:
         specifier: ^3.9.4
         version: 3.9.4
@@ -428,8 +428,8 @@ packages:
   '@types/lodash@4.17.24':
     resolution: {integrity: sha512-gIW7lQLZbue7lRSWEFql49QJJWThrTFFeIMJdp3eH4tKoxm1OvEPg02rm4wCCSHS0cL3/Fizimb35b7k8atwsQ==}
 
-  '@types/node@26.1.0':
-    resolution: {integrity: sha512-O0A1G3xPGy4w7AgQdAQYUlQ+BKk2Oovw8eRpofyp5KdBZULnbe+WqaOVNrm705SHphCiG4XHsACrSmPu1f+Kgw==}
+  '@types/node@26.4.1':
+    resolution: {integrity: sha512-k97ENvZWtvA6yqz5/FS6a7duDgOPEeOQOc2iKS/nY6mX6qJUKtLnWzQS+Xj6tXweyj6ZcTAK2Qecetnvi9nCLA==}
 
   blake3-wasm@2.1.5:
     resolution: {integrity: sha512-F1+K8EbfOZE49dtoPtmxUQrpXaBIl3ICvasLh+nJta0xkz+9kF/7uet9fLnwKqhDrmj6g+6K3Tw9yQPUg2ka5g==}
@@ -786,7 +786,7 @@ snapshots:
 
   '@types/lodash@4.17.24': {}
 
-  '@types/node@26.1.0':
+  '@types/node@26.4.1':
     dependencies:
       undici-types: 8.3.0
 
